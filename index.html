@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endless Studio | Design Criativo e Moderno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0a1a3a;
+            --secondary-blue: #1a2d5a;
+            --accent-blue: #4cc9f0;
+            --dark-blue: #051225;
+            --light-blue: #1e3a8a;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #a0aec0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated dark background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 50%, var(--dark-blue) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glowing effect */
+        .glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.15) 0%, rgba(76, 201, 240, 0) 70%);
+            filter: blur(40px);
+            z-index: -1;
+            animation: floatGlow 25s ease-in-out infinite;
+        }
+
+        .glow-1 {
+            top: 10%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(26, 45, 90, 0.2) 0%, rgba(26, 45, 90, 0) 70%);
+            animation-delay: -5s;
+        }
+
+        .glow-2 {
+            top: 60%;
+            right: 10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 58, 138, 0.15) 0%, rgba(30, 58, 138, 0) 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.05); }
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 25px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(5, 18, 37, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(76, 201, 240, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--accent-blue);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--gray);
+        }
+
+        .wave-animation {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-animation svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-animation .shape-fill {
+            fill: var(--primary-blue);
+        }
+
+        /* Categories Filter */
+        .categories {
+            padding: 30px 0 0;
+            text-align: center;
+        }
+
+        .categories h3 {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            background-color: rgba(26, 45, 90, 0.6);
+            color: var(--white);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background-color: rgba(26, 45, 90, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(76, 201, 240, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(76, 201, 240, 0.2);
+            border-color: rgba(76, 201, 240, 0.3);
+        }
+
+        .card-image {
+            height: 250px;
+            width: 100%;
+            background-color: var(--secondary-blue);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-image::after {
+            content: '\f065';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(5, 18, 37, 0.8);
+            color: var(--accent-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card-image:hover::after {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .card-content .designer {
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-content .category {
+            display: inline-block;
+            background-color: rgba(76, 201, 240, 0.1);
+            color: var(--accent-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            border: 1px solid rgba(76, 201, 240, 0.2);
+        }
+
+        .card-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 18, 37, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-blue);
+        }
+
+        .modal-info {
+            background-color: rgba(26, 45, 90, 0.8);
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            margin-top: -5px;
+        }
+
+        .modal-info h3 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .modal-info .designer {
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            padding: 100px 0;
+            display: none;
+        }
+
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(26, 45, 90, 0.6);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(76, 201, 240, 0.2);
+        }
+
+        .admin-header h3 {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .logout-btn {
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(5, 18, 37, 0.6);
+            border: 1px solid rgba(76, 201, 240, 0.3);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            color: var(--white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+        }
+
+        .btn {
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .discord-settings {
+            background-color: rgba(5, 18, 37, 0.4);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        /* Links Section */
+        .links {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .links h2 {
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .links p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 25px rgba(76, 201, 240, 0.3);
+        }
+
+        .discord-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(76, 201, 240, 0.4);
+        }
+
+        .discord-btn i {
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(5, 18, 37, 0.9);
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(76, 201, 240, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--accent-blue);
+        }
+
+        .social-icons {
+            display: flex;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(76, 201, 240, 0.1);
+            color: var(--accent-blue);
+            margin-left: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(76, 201, 240, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(5, 18, 37, 0.98);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(76, 201, 240, 0.2);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+            
+            .hero {
+                padding: 150px 0 100px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .category-filter {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-icons {
+                margin-top: 25px;
+            }
+            
+            .social-icons a:first-child {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-container {
+                padding: 30px 20px;
+            }
+            
+            .discord-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Login Panel */
+        .login-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 18, 37, 0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-panel.active {
+            display: flex;
+        }
+
+        .login-container {
+            background-color: rgba(26, 45, 90, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-container h3 {
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .admin-access-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(76, 201, 240, 0.4);
+            transition: var(--transition);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .admin-access-btn:hover {
+            background-color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(76, 201, 240, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="particles" id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-infinity"></i>Endless<span>Studio</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#admin" id="adminNavLink" style="display: none;">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Design <span>Endless</span><br>Possibilidades Infinitas</h1>
+            <p>Criamos identidades visuais únicas e projetos inovadores que destacam sua marca em um mundo visualmente saturado. Nossa abordagem combina estética minimalista com funcionalidade excepcional.</p>
+        </div>
+        <div class="wave-animation">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nosso Portfólio</h2>
+                <p>Explore nossos projetos mais recentes, onde criatividade e técnica se encontram para criar designs excepcionais.</p>
+            </div>
+            
+            <!-- Categories Filter -->
+            <div class="categories">
+                <h3>Filtrar por Categoria</h3>
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">Todos</button>
+                    <button class="category-btn" data-category="logo">Logo</button>
+                    <button class="category-btn" data-category="banner">Banner</button>
+                    <button class="category-btn" data-category="gif">GIF</button>
+                    <button class="category-btn" data-category="flyer">Flyers</button>
+                    <button class="category-btn" data-category="loadscreen">Loadscreen</button>
+                    <button class="category-btn" data-category="letreiro">Letreiro</button>
+                    <button class="category-btn" data-category="motion">Motion</button>
+                </div>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel (initially hidden) -->
+    <section class="admin-panel" id="admin">
+        <div class="container">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h3>Painel Administrativo</h3>
+                    <button class="logout-btn" id="logoutBtn">Sair</button>
+                </div>
+                
+                <form id="portfolioForm">
+                    <div class="form-group">
+                        <label for="designerName">Nome do Designer</label>
+                        <input type="text" id="designerName" class="form-control" placeholder="Ex: Ana Silva" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectName">Nome do Projeto/Arte</label>
+                        <input type="text" id="projectName" class="form-control" placeholder="Ex: Identidade Visual NovaTech" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectCategory">Categoria</label>
+                        <select id="projectCategory" class="form-control" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="logo">Logo</option>
+                            <option value="banner">Banner</option>
+                            <option value="gif">GIF</option>
+                            <option value="flyer">Flyers</option>
+                            <option value="loadscreen">Loadscreen</option>
+                            <option value="letreiro">Letreiro</option>
+                            <option value="motion">Motion</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectImage">URL da Imagem</label>
+                        <input type="text" id="projectImage" class="form-control" placeholder="https://exemplo.com/imagem.jpg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescription">Descrição do Projeto</label>
+                        <textarea id="projectDescription" class="form-control" rows="4" placeholder="Descreva o projeto, técnicas utilizadas, objetivos alcançados..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-block" id="saveProjectBtn">Adicionar Projeto</button>
+                </form>
+                
+                <!-- Discord Link Settings -->
+                <div class="discord-settings">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 15px;">Configuração do Link do Discord</h4>
+                    <div class="form-group">
+                        <label for="discordUrl">Link do Servidor Discord</label>
+                        <input type="text" id="discordUrl" class="form-control" placeholder="https://discord.gg/seulink" value="https://discord.gg/example">
+                        <small style="color: var(--gray); display: block; margin-top: 5px;">Este link será usado no botão "Junte-se ao Nosso Servidor"</small>
+                    </div>
+                    <button class="btn" id="saveDiscordBtn">Salvar Link do Discord</button>
+                </div>
+                
+                <div id="adminProjectsList" style="margin-top: 40px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 20px;">Projetos Existentes</h4>
+                    <div id="existingProjects">
+                        <!-- Existing projects will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="links" id="links">
+        <div class="container">
+            <h2>Conecte-se Conosco</h2>
+            <p>Junte-se à nossa comunidade de designers e clientes no Discord para discutir ideias, colaborar em projetos e ficar por dentro das novidades.</p>
+            <a href="#" class="discord-btn" id="discordLink">
+                <i class="fab fa-discord"></i> Junte-se ao Nosso Servidor
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">Endless<span>Studio</span></a>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Endless Studio. Todos os direitos reservados.</p>
+                <p>Design minimalista com foco na experiência e criatividade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" src="" alt="Visualização do projeto">
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <span class="designer" id="modalDesigner"></span>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Panel -->
+    <div class="login-panel" id="loginPanel">
+        <div class="login-container">
+            <h3>Acesso Administrativo</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" class="form-control" placeholder="Digite seu usuário" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" placeholder="Digite sua senha" required>
+                </div>
+                
+                <button type="submit" class="btn btn-block">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Access Button -->
+    <button class="admin-access-btn" id="adminAccessBtn">
+        <i class="fas fa-lock"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+            this.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.remove('active');
+                document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Portfolio data
+        let portfolioItems = [
+            {
+                id: 1,
+                designer: "Maria Souza",
+                projectName: "Identidade Visual NovaTech",
+                category: "logo",
+                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "Sistema completo de identidade visual para startup de tecnologia, incluindo logotipo, paleta de cores e aplicações em diferentes mídias."
+            },
+            {
+                id: 2,
+                designer: "Carlos Mendes",
+                projectName: "Campanha Publicitária EcoLife",
+                category: "banner",
+                image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "Conceito visual para campanha de conscientização ambiental com foco em sustentabilidade e design responsivo."
+            },
+            {
+                id: 3,
+                designer: "Ana Lima",
+                projectName: "Redesign App Finanças",
+                category: "motion",
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "Reestruturação completa da interface de aplicativo financeiro com foco em usabilidade e experiência do usuário."
+            },
+            {
+                id: 4,
+                designer: "João Silva",
+                projectName: "Flyer Festival de Verão",
+                category: "flyer",
+                image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "Design de flyer para festival de música com elementos vibrantes e tipografia criativa."
+            }
+        ];
+        
+        // Discord link storage
+        let discordLink = "https://discord.gg/example";
+        
+        // Function to get category name
+        function getCategoryName(categoryId) {
+            const categories = {
+                'logo': 'Logo',
+                'banner': 'Banner',
+                'gif': 'GIF',
+                'flyer': 'Flyers',
+                'loadscreen': 'Loadscreen',
+                'letreiro': 'Letreiro',
+                'motion': 'Motion'
+            };
+            return categories[categoryId] || 'Outro';
+        }
+        
+        // Function to render portfolio items
+        function renderPortfolio(filterCategory = 'all') {
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            portfolioGrid.innerHTML = '';
+            
+            const filteredItems = filterCategory === 'all' 
+                ? portfolioItems 
+                : portfolioItems.filter(item => item.category === filterCategory);
+            
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                card.setAttribute('data-category', item.category);
+                card.innerHTML = `
+                    <div class="card-image" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.projectName}">
+                    </div>
+                    <div class="card-content">
+                        <h3>${item.projectName}</h3>
+                        <span class="designer">Designer: ${item.designer}</span>
+                        <span class="category">${getCategoryName(item.category)}</span>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                portfolioGrid.appendChild(card);
+            });
+            
+            // Add click event to images for modal
+            document.querySelectorAll('.card-image').forEach(image => {
+                image.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = portfolioItems.find(item => item.id === id);
+                    if (item) {
+                        openImageModal(item);
+                    }
+                });
+            });
+        }
+        
+        // Function to render admin projects list
+        function renderAdminProjects() {
+            const existingProjects = document.getElementById('existingProjects');
+            existingProjects.innerHTML = '';
+            
+            portfolioItems.forEach(item => {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'project-item';
+                projectItem.style.cssText = `
+                    padding: 15px;
+                    border: 1px solid rgba(76, 201, 240, 0.3);
+                    border-radius: 6px;
+                    margin-bottom: 15px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: rgba(5, 18, 37, 0.4);
+                `;
+                
+                projectItem.innerHTML = `
+                    <div>
+                        <strong style="color: var(--white);">${item.projectName}</strong>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: var(--gray);">
+                            Designer: ${item.designer} | Categoria: ${getCategoryName(item.category)}
+                        </p>
+                    </div>
+                    <div>
+                        <button class="btn edit-btn" data-id="${item.id}" style="padding: 8px 15px; margin-right: 8px; background-color: var(--secondary-blue);">Editar</button>
+                        <button class="btn delete-btn" data-id="${item.id}" style="padding: 8px 15px; background-color: #e74c3c;">Remover</button>
+                    </div>
+                `;
+                
+                existingProjects.appendChild(projectItem);
+            });
+            
+            // Add event listeners to edit and delete buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    editProject(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    deleteProject(id);
+                });
+            });
+        }
+        
+        // Category filter functionality
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get category to filter
+                const category = this.getAttribute('data-category');
+                
+                // Render filtered portfolio
+                renderPortfolio(category);
+            });
+        });
+        
+        // Image Modal functionality
+        function openImageModal(item) {
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = item.projectName;
+            document.getElementById('modalDesigner').textContent = `Designer: ${item.designer}`;
+            document.getElementById('modalDescription').textContent = item.description;
+            document.getElementById('imageModal').classList.add('active');
+        }
+        
+        document.getElementById('modalClose').addEventListener('click', function() {
+            document.getElementById('imageModal').classList.remove('active');
+        });
+        
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
+        // Admin panel functionality
+        let isAdminLoggedIn = false;
+        let editingId = null;
+        
+        // Show login panel when admin button is clicked
+        document.getElementById('adminAccessBtn').addEventListener('click', function() {
+            document.getElementById('loginPanel').classList.add('active');
+        });
+        
+        // Hide login panel when clicking outside
+        document.getElementById('loginPanel').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple hardcoded authentication
+            if (username === 'admin' && password === 'endless2023') {
+                isAdminLoggedIn = true;
+                document.getElementById('admin').style.display = 'block';
+                document.getElementById('adminNavLink').style.display = 'block';
+                document.getElementById('loginPanel').classList.remove('active');
+                document.getElementById('loginForm').reset();
+                
+                // Update Discord link in the input
+                document.getElementById('discordUrl').value = discordLink;
+                
+                // Render admin projects list
+                renderAdminProjects();
+                
+                alert('Login realizado com sucesso!');
+            } else {
+                alert('Usuário ou senha incorretos. Tente: admin / endless2023');
+            }
+        });
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin').style.display = 'none';
+            document.getElementById('adminNavLink').style.display = 'none';
+            alert('Logout realizado com sucesso.');
+        });
+        
+        // Portfolio form submission
+        document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const designerName = document.getElementById('designerName').value;
+            const projectName = document.getElementById('projectName').value;
+            const projectCategory = document.getElementById('projectCategory').value;
+            const projectImage = document.getElementById('projectImage').value;
+            const projectDescription = document.getElementById('projectDescription').value;
+            
+            if (!projectCategory) {
+                alert('Por favor, selecione uma categoria.');
+                return;
+            }
+            
+            if (editingId) {
+                // Update existing project
+                const index = portfolioItems.findIndex(item => item.id === editingId);
+                if (index !== -1) {
+                    portfolioItems[index] = {
+                        id: editingId,
+                        designer: designerName,
+                        projectName: projectName,
+                        category: projectCategory,
+                        image: projectImage,
+                        description: projectDescription
+                    };
+                }
+                
+                document.getElementById('saveProjectBtn').textContent = 'Adicionar Projeto';
+                editingId = null;
+            } else {
+                // Add new project
+                const newId = portfolioItems.length > 0 
+                    ? Math.max(...portfolioItems.map(item => item.id)) + 1 
+                    : 1;
+                
+                portfolioItems.push({
+                    id: newId,
+                    designer: designerName,
+                    projectName: projectName,
+                    category: projectCategory,
+                    image: projectImage,
+                    description: projectDescription
+                });
+            }
+            
+            // Update displays
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+            renderPortfolio(activeCategory);
+            renderAdminProjects();
+            
+            // Reset form
+            this.reset();
+            
+            alert(editingId ? 'Projeto atualizado com sucesso!' : 'Projeto adicionado com sucesso!');
+        });
+        
+        // Edit project function
+        function editProject(id) {
+            const project = portfolioItems.find(item => item.id === id);
+            if (project) {
+                document.getElementById('designerName').value = project.designer;
+                document.getElementById('projectName').value = project.projectName;
+                document.getElementById('projectCategory').value = project.category;
+                document.getElementById('projectImage').value = project.image;
+                document.getElementById('projectDescription').value = project.description;
+                
+                editingId = id;
+                document.getElementById('saveProjectBtn').textContent = 'Atualizar Projeto';
+                
+                // Scroll to form
+                document.getElementById('portfolioForm').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Delete project function
+        function deleteProject(id) {
+            if (confirm('Tem certeza que deseja remover este projeto?')) {
+                portfolioItems = portfolioItems.filter(item => item.id !== id);
+                
+                // Update displays
+                const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                renderPortfolio(activeCategory);
+                renderAdminProjects();
+                
+                alert('Projeto removido com sucesso!');
+            }
+        }
+        
+        // Discord link functionality
+        document.getElementById('saveDiscordBtn').addEventListener('click', function() {
+            const newDiscordLink = document.getElementById('discordUrl').value;
+            if (newDiscordLink && newDiscordLink.startsWith('http')) {
+                discordLink = newDiscordLink;
+                document.getElementById('discordLink').href = discordLink;
+                alert('Link do Discord atualizado com sucesso!');
+            } else {
+                alert('Por favor, insira um link válido (começando com http ou https).');
+            }
+        });
+        
+        // Set Discord link on page load
+        document.getElementById('discordLink').href = discordLink;
+        
+        // Initial render
+        renderPortfolio();
+        
+        // Simple particles effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 10 + 2}px;
+                    height: ${Math.random() * 10 + 2}px;
+                    background-color: var(--accent-blue);
+                    border-radius: 50%;
+                    opacity: ${Math.random() * 0.3 + 0.1};
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    animation: float ${Math.random() * 20 + 10}s linear infinite;
+                `;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
